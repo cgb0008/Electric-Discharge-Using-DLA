@@ -27,7 +27,7 @@ maps[seedX,seedY+1] = 1
 maps[seedX+1,seedY+1] = 1
 #Generation of # Walkers
 runs = 20000
-loc = [10,15]
+loc = [30,90]
 
 while runs > 0:
     #Sets Stuck Boolean
