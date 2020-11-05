@@ -46,5 +46,5 @@ while runs > 0:
 
 
 
-plt.matshow(maps,interpolation='nearest',cmap = colmap)
+plt.matshow(maps,cmap = colmap)
 plt.show()
