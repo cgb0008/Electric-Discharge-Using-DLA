@@ -15,10 +15,9 @@ class Walk():
             prevloc = previous stuck piece
         '''
         top_bottom = rand.randint(1,4)
-        self.loc = prevloc
 
         if top_bottom == 1:
-              self.walker = [N,rand.randint(1,N)]
+              self.walker = [N-10,rand.randint(1,N)]
         if top_bottom == 2:
               self.walker = [int(N/2),rand.randint(1,N)]
         if top_bottom == 3:
