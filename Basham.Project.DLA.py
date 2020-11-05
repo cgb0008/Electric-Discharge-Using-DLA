@@ -26,7 +26,7 @@ maps[seedX+1,seedY] = 1
 maps[seedX,seedY+1] = 1
 maps[seedX+1,seedY+1] = 1
 #Generation of # Walkers
-runs = 20000
+runs = 10000
 loc = [30,90]
 
 while runs > 0:
