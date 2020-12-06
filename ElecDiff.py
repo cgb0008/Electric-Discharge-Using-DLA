@@ -9,21 +9,21 @@ class Walk():
         '''
             Initializes Class
         '''
-    def Walker(self,N,prevloc):
+    def Walker(self,N):
         '''
             N = size of plot
-            prevloc = previous stuck piece
         '''
-        top_bottom = rand.randint(1,4)
-
-        if top_bottom == 1:
-              self.walker = [N-10,rand.randint(1,N)]
-        if top_bottom == 2:
-              self.walker = [int(N/2),rand.randint(1,N)]
-        if top_bottom == 3:
-            self.walker = [rand.randint(prevloc[1]-60,prevloc[1]-50),rand.randint(0,prevloc[0])]
-        if top_bottom == 4:
-            self.walker = [rand.randint(prevloc[1]+50,prevloc[1]+60),rand.randint(0,prevloc[0])]
+        position = rand.randint(1,4)
+        self.walker = [N-5,N-5]
+        
+        if position == 1:
+            self.walker = [rand.randint(10,int(N/4)),rand.randint(10,N-5)]        #Top Quarter
+        if position == 2:
+            self.walker = [rand.randint(int(3*N/4),N-5),rand.randint(10,N-5)]    #Bottom Quarter
+        if position == 3:
+            self.walker = [rand.randint(10,N-5),rand.randint(10,int(N/4))]        #Left Quarter
+        if position == 4:
+            self.walker = [rand.randint(10,N-5),rand.randint(int(3*N/4),N-5)]    #Right Quarter
         return self.walker
 
     def CheckWalk(self,loc,maps,N,stuck,edge):
@@ -44,17 +44,18 @@ class Walk():
         self.edge = edge
 
         #Checks if Walker is close to edge of square
-        if ((self.loc[0]+1) > N-1 or (self.loc[1]+1) > N-1 or (self.loc[1]-1) < 1 or (self.loc[0]-1) < 0):
+        if ((self.loc[0]+1) >= N-1 or (self.loc[1]+1) >= N-1 or (self.loc[1]-1) <= 1 or (self.loc[0]-1) <= 1):
             self.edge = True
         if self.edge:
-            self.loc = [rand.randint(int(N/6),int(5*N/6)),rand.randint(int(N/6),int(5*N/6))]
+            self.loc = [rand.randint(10,N-10),rand.randint(10,N-10)]
+            self.edge = False
         
         #Changes walker into seed if 'stuck' to previous seed
         if not self.edge:
-            up = self.maps[self.loc[1]+1,self.loc[0]]
-            down = self.maps[self.loc[1]-1,self.loc[0]]
-            left = self.maps[self.loc[1],self.loc[0]-1]
-            right = self.maps[self.loc[1],self.loc[0]+1]
+            up = self.maps[self.loc[0]+1,self.loc[1]]
+            down = self.maps[self.loc[0]-1,self.loc[1]]
+            left = self.maps[self.loc[0],self.loc[1]-1]
+            right = self.maps[self.loc[0],self.loc[1]+1]
 
             if down == 1:
                 self.stuck = True
@@ -67,13 +68,15 @@ class Walk():
         
         #'Walks' particle if not stuck to another seed
         if not self.stuck and not self.edge:
-            k = rand.randint(1,3)
-            if k == 1:
-                self.loc = [self.loc[1]-1,self.loc[0]]
-            if k == 2:
-                self.loc = [self.loc[1],self.loc[0]+1]
-            if k == 3:
-                self.loc = [self.loc[1],self.loc[0]-1]
+            k = rand.randint(1,4)
+            if k == 1:                          #Up
+                self.loc = [self.loc[0]-1,self.loc[1]]
+            if k == 2:                          #Right
+                self.loc = [self.loc[0],self.loc[1]+1]
+            if k == 3:                          #Left
+                self.loc = [self.loc[0],self.loc[1]-1]
+            if k == 4:                          #Down
+                self.loc = [self.loc[0]+1,self.loc[1]]
         
         #Return Needed Values
         return (self.loc,self.stuck,self.edge)
