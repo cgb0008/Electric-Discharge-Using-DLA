@@ -68,5 +68,5 @@ with io.get_writer(gif_path+'\\VisualDLA.gif', mode='I',duration = 0.01) as writ
 
 #Shows Final Resulting Plot
 plt.matshow(maps,cmap = colmap)
-plt.imsave(f'{gif_path}\\ResultDLA.jpg')
+plt.imsave(f'{gif_path}\\ResultDLA.jpg',maps,cmap=colmap)
 plt.show()
