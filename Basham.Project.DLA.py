@@ -38,7 +38,7 @@ maps[seedX+1,seedY] = 1
 maps[seedX,seedY+1] = 1
 
 #Generation of Walkers & Runs Walk Function
-runs = 2000
+runs = 1000
 im_num = runs
 
 while runs > 0:
@@ -63,7 +63,7 @@ while runs > 0:
 #Creates Gif Video for Visualization
 with io.get_writer(gif_path+'\\VisualDLA.gif', mode='I',duration = 0.01) as writer:
     for i in range(im_num,0,-1):
-        writer.append_data(io.imread(im_path+f'\\{i}.jpg'.format(i=i)))
+        writer.append_data(io.imread(im_path+f'\\{i}.jpg'))
 
 
 #Shows Final Resulting Plot
