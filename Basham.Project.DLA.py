@@ -27,18 +27,19 @@ N = 180
 maps = np.zeros((N,N))
 colmap = colors.ListedColormap(['black','white'])
 
-#Beginning 'Seed'
-seedY = int(N/2)
-seedX = int(N/2)
+#Beginning 'Seed' Location
+spot = 'c'                  #Specifies Seed Location Start
+
+seedX,seedY = W().SeedStart(N,spot)    #Gets start seed coordinates
+
 maps[seedX,seedY] = 1
 maps[seedX-1,seedY] = 1
 maps[seedX+1,seedY] = 1
 maps[seedX,seedY+1] = 1
 
 #Generation of Walkers & Runs Walk Function
-runs = 20
+runs = 2000
 im_num = runs
-loc = [N-5,N-5]
 
 while runs > 0:
     #Sets Stuck/Edge Boolean
@@ -67,4 +68,5 @@ with io.get_writer(gif_path+'\\VisualDLA.gif', mode='I',duration = 0.01) as writ
 
 #Shows Final Resulting Plot
 plt.matshow(maps,cmap = colmap)
+plt.imsave(f'{gif_path}\\ResultDLA.jpg')
 plt.show()

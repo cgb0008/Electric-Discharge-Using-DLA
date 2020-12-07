@@ -9,6 +9,26 @@ class Walk():
         '''
             Initializes Class
         '''
+    def SeedStart(self,N,spot):
+        '''
+            N = Map Size
+            Spot = Location of Starting Seed
+                'c' Center , 'bl' Bottom Left , 'br' Bottom Right
+        '''
+        self.spot = spot
+
+        if self.spot == 'c':
+            seedY = int(N/2)
+            seedX = int(N/2)
+        elif self.spot == 'bl':
+            seedY = 10
+            seedX = N-10
+        elif self.spot == 'br':
+            seedY = N-10
+            seedX = N-10
+
+        return (seedX,seedY)
+
     def Walker(self,N):
         '''
             N = size of plot
