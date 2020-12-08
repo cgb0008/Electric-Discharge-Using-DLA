@@ -11,9 +11,21 @@ class Walk():
         '''
     def SeedStart(self,N,spot):
         '''
+            Assigns Starting Location of Seed
+
+            Arguments:
+            '''''''''''''
             N = Map Size
             Spot = Location of Starting Seed
-                'c' Center , 'bl' Bottom Left , 'br' Bottom Right
+                'c' Center
+                'bl' Bottom Left
+                'br' Bottom Right
+            '''''''''''''
+            Outputs:
+            '''''''''''''
+            SeedX = Row Index
+            SeedY = Column Index
+            '''''''''''''
         '''
         self.spot = spot
 
@@ -31,7 +43,16 @@ class Walk():
 
     def Walker(self,N):
         '''
+            Creates Walker Particle
+
+            Arguments:
+            ''''''''''''
             N = size of plot
+            ''''''''''''
+            Outputs:
+            ''''''''''''
+            Coordinates = [X,Y]
+            ''''''''''''
         '''
         position = rand.randint(1,4)
         self.walker = [N-5,N-5]
@@ -50,9 +71,20 @@ class Walk():
         '''
             Walks particle until it matches with another seed
 
+            Arguments:
+            ''''''''''''''
             Loc = Location of Walker
             Map = Matrix of seeds
             N = size of plot
+            Stuck = Boolean 
+            Edge = Boolean
+            ''''''''''''''
+            Outputs:
+            ''''''''''''''
+            Loc = Location of Walker (Array)
+            Stuck = Boolean (True if Stuck)
+            Edge = Boolean (True if on Edge)
+            ''''''''''''''
         '''
         #Creates class var
         self.loc = loc
