@@ -38,7 +38,7 @@ maps[seedX+1,seedY] = 1
 maps[seedX,seedY+1] = 1
 
 #Generation of Walkers & Runs Walk Function
-runs = 1000
+runs = 2000
 im_num = runs
 
 while runs > 0:
