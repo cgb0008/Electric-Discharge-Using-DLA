@@ -12,3 +12,5 @@ Contains all module calls and running script to output a figure showing the DLA 
 # Results
 ## VisualDLA.gif
 A Gif Movie Showing the Diffusion of the Particles Through the Map
+## ResultDLA.jpg
+JPG Image Example of the Final Result
