@@ -25,7 +25,6 @@ gif_path = 'C:\\Users\\chris\\Documents\\PHYS301\\Electric-Discharge-Using-DLA'
 #Creates Square/Canvas
 N = 180
 maps = np.zeros((N,N))
-colmap = colors.ListedColormap(['black','white'])
 
 #Beginning 'Seed' Location
 spot = 'c'                  #Specifies Seed Location Start
@@ -39,7 +38,7 @@ maps[seedX,seedY+1] = 1
 
 #Generation of Walkers & Runs Walk Function
 runs = 2000
-im_num = runs
+orig = runs
 
 while runs > 0:
     #Sets Stuck/Edge Boolean
@@ -53,19 +52,30 @@ while runs > 0:
 
         if stuck:
             #Assigns Stuck Particle
-            maps[loc[1],loc[0]] = 1
-            
-            #Saves Individual Images to Create Full Video
-            plt.imsave(f'{im_path}\\{runs}.jpg',maps,cmap=colmap)
+            if runs <= int(1/4*orig):
+                maps[loc[1],loc[0]] = 4
+                colmap = colors.ListedColormap(['white','black','red','blue','green'])
+            elif runs <= int(1/2*orig):
+                maps[loc[1],loc[0]] = 3
+                colmap = colors.ListedColormap(['white','black','red','blue'])
+            elif runs <= int(3/4*orig):
+                maps[loc[1],loc[0]] = 2
+                colmap = colors.ListedColormap(['white','black','red'])
+            else:
+                maps[loc[1],loc[0]] = 1
+                colmap = colors.ListedColormap(['white','black'])
+
+            #Saves Individual Images to Create Full Video w/ Colors
+            plt.imsave(f'{im_path}\\{runs}.jpg',maps,cmap=colmap)   
             runs -= 1
 
 
 #Creates Gif Video for Visualization
 with io.get_writer(gif_path+'\\VisualDLA.gif', mode='I',duration = 0.01) as writer:
-    for i in range(im_num,0,-1):
+    for i in range(orig,0,-1):
         writer.append_data(io.imread(im_path+f'\\{i}.jpg'))
 
-
+colmap = colors.ListedColormap(['black','white','red','yellow','cyan'])
 #Shows Final Resulting Plot
 plt.matshow(maps,cmap = colmap)
 plt.imsave(f'{gif_path}\\ResultDLA.jpg',maps,cmap=colmap)
