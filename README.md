@@ -14,3 +14,9 @@ Contains all module calls and running script to output a figure showing the DLA 
 A Gif Movie Showing the Diffusion of the Particles Through the Map
 ## ResultDLA.jpg
 JPG Image Example of the Final Result
+## ResultDLAC.jpg
+JPG Image Example of the Final Result from Center Start
+## ResultDLABL.jpg
+JPG Image Example of the Final Result from Bottom Left Start
+## ResultDLABR.jpg
+JPG Image Example of the Final Result from Bottom Right Start
